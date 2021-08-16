@@ -3,7 +3,7 @@
 
 
 FILE* config,* cer;
-char uuid[40],sni[30];
+char passwd[30],sni[30];
 int mode;
 
 int main(){
@@ -24,10 +24,10 @@ Menu:UI();
     }
     else if (mode == 3) {
         printf("xray二维码:\n\n");
-        system("qrencode -t ansiutf8 < /usr/local/etc/xray/vmess.txt");
+        system("qrencode -t ansiutf8 < /usr/local/etc/xray/trojan.txt");
         printf("\n\n");
-        printf("Vmess链接:\n\n");
-        system("bash /usr/local/etc/xray/code_gen.sh");
+        printf("trojan链接:\n\n");
+        system("cat /usr/local/etc/xray/trojan.txt");
         printf("\n");
         goto Menu;
     }
@@ -50,8 +50,8 @@ Menu:UI();
         config = fopen("/usr/local/etc/sni.conf", "w");
         fprintf(config, "%s", sni);
         fclose(config);
-        config = fopen("/usr/local/etc/xray/uuid.conf", "r");
-        fscanf(config, "%s", uuid);
+        config = fopen("/usr/local/etc/xray/passwd.conf", "r");
+        fscanf(config, "%s",passwd);
         fclose(config);
         printf("正在复制SSL证书与私钥. . .\n");
         system("cp -rf /root/1.pem /usr/local/etc/xray/certificate.crt");
@@ -63,10 +63,10 @@ Menu:UI();
         printf("\n--------------------------------------------------------\n");
         printf("xray部署完成！\n");
         printf("xray二维码:\n\n");
-        system("qrencode -t ansiutf8 < /usr/local/etc/xray/vmess.txt");
+        system("qrencode -t ansiutf8 < /usr/local/etc/xray/trojan.txt");
         printf("\n\n");
-        printf("Vmess链接:\n\n");
-        system("bash /usr/local/etc/xray/code_gen.sh");
+        printf("trojan链接:\n\n");
+        system("cat /usr/local/etc/xray/trojan.txt");
         goto Menu;
     }
     else if (mode == 6) {
@@ -126,13 +126,13 @@ int install_xray() {
     system("cp -rf /root/2.pem /usr/local/etc/xray/private.key");
     printf("正在生成配置文件. . .\n");
     system("curl https://cdn.jsdelivr.net/gh/HXHGTS/TrojanServerByXray/config.json.1 > /usr/local/etc/xray/config.json");
-    printf("正在生成UUID. . .\n");
-    system("uuidgen > /usr/local/etc/xray/uuid.conf");
-    config = fopen("/usr/local/etc/xray/uuid.conf", "r");
-    fscanf(config, "%s", uuid);
+    printf("正在生成强密码. . .\n");
+    system("pwgen -s 28 1 > /usr/local/etc/xray/passwd.conf");
+    config = fopen("/usr/local/etc/xray/passwd.conf", "r");
+    fscanf(config, "%s",passwd);
     fclose(config);
     config = fopen("/usr/local/etc/xray/config.json", "a");
-    fprintf(config, "       \"id\": \"%s\"\n", uuid);
+    fprintf(config, "                        \"password\":\"%s\",\n", passwd);
     fclose(config);
     system("curl https://cdn.jsdelivr.net/gh/HXHGTS/TrojanServerByXray/config.json.2 >> /usr/local/etc/xray/config.json");
     printf("正在启动xray并将xray写入开机引导项. . .\n");
@@ -145,35 +145,17 @@ int install_xray() {
     printf("\n--------------------------------------------------------\n");
     printf("xray部署完成！\n");
     printf("xray二维码:\n\n");
-    system("qrencode -t ansiutf8 < /usr/local/etc/xray/vmess.txt");
+    system("qrencode -t ansiutf8 < /usr/local/etc/xray/trojan.txt");
     printf("\n\n");
-    printf("Vmess链接:\n\n");
-    system("bash /usr/local/etc/xray/code_gen.sh");
+    printf("trojan链接:\n\n");
+    system("cat /usr/local/etc/xray/trojan.txt");
     return 0;
 }
 
 int QRCodeGen() {
-    config = fopen("/usr/local/etc/xray/code_gen.sh", "w");
-    fprintf(config, "#!/bin/bash\n");
-    fprintf(config, "VMESSCODE=$(base64 -w 0 << EOF\n");
-    fprintf(config, "    {\n");
-    fprintf(config, "      \"v\": \"2\",\n");
-    fprintf(config, "      \"ps\": \"v2ray\",\n");
-    fprintf(config, "      \"add\": \"%s\",\n",sni);//Addr
-    fprintf(config, "      \"port\": \"443\",\n");
-    fprintf(config, "      \"id\": \"%s\",\n",uuid);//UUID
-    fprintf(config, "      \"aid\": \"0\",\n");
-    fprintf(config, "      \"net\": \"ws\",\n");
-    fprintf(config, "      \"type\": \"none\",\n");
-    fprintf(config, "      \"host\": \"%s\",\n",sni);
-    fprintf(config, "      \"path\": \"/iso\",\n");
-    fprintf(config, "      \"tls\": \"tls\"\n");
-    fprintf(config, "    }\n");
-    fprintf(config, "EOF\n");
-    fprintf(config, "    )\n");
-    fprintf(config, "echo vmess://${VMESSCODE}\n");
+    config = fopen("/usr/local/etc/xray/trojan.txt", "w");
+    fprintf(config, "trojan://%s@%s:443#%s\n",passwd,sni,sni);
     fclose(config);
-    system("bash /usr/local/etc/xray/code_gen.sh > /usr/local/etc/xray/vmess.txt");
     return 0;
 }
 
