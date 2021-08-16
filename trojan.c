@@ -132,7 +132,7 @@ int install_xray() {
     fscanf(config, "%s",passwd);
     fclose(config);
     config = fopen("/usr/local/etc/xray/config.json", "a");
-    fprintf(config, "                        \"password\":\"%s\",\n", passwd);
+    fprintf(config, "                        \"password\":\"%s\"\n", passwd);
     fclose(config);
     system("curl https://cdn.jsdelivr.net/gh/HXHGTS/TrojanServerByXray/config.json.2 >> /usr/local/etc/xray/config.json");
     printf("正在启动xray并将xray写入开机引导项. . .\n");
