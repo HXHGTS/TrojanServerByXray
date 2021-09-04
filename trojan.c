@@ -17,8 +17,8 @@ Menu:UI();
         system("systemctl stop xray");
         system("systemctl start xray");
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
-        printf("--------------以下输出不为空则xray运行正常------------------\n");
-        system("ss -lp | grep xray");
+        printf("---------------以下输出为绿色则xray运行正常-----------------\n");
+        system("systemctl status xray -l");
         printf("\n--------------------------------------------------------\n");
         goto Menu;
     }
@@ -35,8 +35,8 @@ Menu:UI();
         system("vi /usr/local/etc/xray/config.json");
         system("systemctl restart xray");
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
-        printf("--------------以下输出不为空则xray运行正常------------------\n");
-        system("ss -lp | grep xray");
+        printf("---------------以下输出为绿色则xray运行正常-----------------\n");
+        system("systemctl status xray -l");
         printf("\n--------------------------------------------------------\n");
         goto Menu;
     }
@@ -58,8 +58,8 @@ Menu:UI();
         system("cp -rf /root/2.pem /usr/local/etc/xray/private.key"); 
         QRCodeGen();
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
-        printf("--------------以下输出不为空则xray运行正常------------------\n");
-        system("ss -lp | grep xray");
+        printf("---------------以下输出为绿色则xray运行正常-----------------\n");
+        system("systemctl status xray -l");
         printf("\n--------------------------------------------------------\n");
         printf("xray部署完成！\n");
         printf("xray二维码:\n\n");
@@ -76,13 +76,15 @@ Menu:UI();
         system("systemctl start xray");
         printf("xray主程序更新完成！\n");
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
-        printf("--------------以下输出不为空则xray运行正常------------------\n");
-        system("ss -lp | grep xray");
+        printf("---------------以下输出为绿色则xray运行正常-----------------\n");
+        system("systemctl status xray -l");
         printf("\n--------------------------------------------------------\n");
         goto Menu;
     }
     else if (mode == 7) {
         system("systemctl stop xray");
+        system("systemctl disable xray");
+        system("systemctl status xray");
         goto Menu;
     }
     else {
@@ -125,7 +127,7 @@ int install_xray() {
     system("cp -rf /root/1.pem /usr/local/etc/xray/certificate.crt");
     system("cp -rf /root/2.pem /usr/local/etc/xray/private.key");
     printf("正在生成配置文件. . .\n");
-    system("curl https://cdn.jsdelivr.net/gh/HXHGTS/TrojanServerByXray/config.json.1 > /usr/local/etc/xray/config.json");
+    system("curl https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/config.json.1 > /usr/local/etc/xray/config.json");
     printf("正在生成强密码. . .\n");
     system("pwgen -s 28 1 > /usr/local/etc/xray/passwd.conf");
     config = fopen("/usr/local/etc/xray/passwd.conf", "r");
@@ -134,14 +136,14 @@ int install_xray() {
     config = fopen("/usr/local/etc/xray/config.json", "a");
     fprintf(config, "                        \"password\":\"%s\"\n", passwd);
     fclose(config);
-    system("curl https://cdn.jsdelivr.net/gh/HXHGTS/TrojanServerByXray/config.json.2 >> /usr/local/etc/xray/config.json");
+    system("curl https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/config.json.2 >> /usr/local/etc/xray/config.json");
     printf("正在启动xray并将xray写入开机引导项. . .\n");
     system("systemctl enable xray");
     system("systemctl start xray");
     QRCodeGen();
     printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
-    printf("--------------以下输出不为空则xray运行正常------------------\n");
-    system("ss -lp | grep xray"); 
+    printf("---------------以下输出为绿色则xray运行正常-----------------\n");
+    system("systemctl status xray -l");
     printf("\n--------------------------------------------------------\n");
     printf("xray部署完成！\n");
     printf("xray二维码:\n\n");
