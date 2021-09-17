@@ -8,6 +8,11 @@ KVM/XEN机器执行(CentOS7):
 
 `yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
 
+KVM/XEN机器执行(Debian10):
+
+`apt update && apt install -y build-essential wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_debian10.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
+
+
 第一次点击安装后会自动升级系统内核并触发重启，重启后输入
 
 `./xray`
