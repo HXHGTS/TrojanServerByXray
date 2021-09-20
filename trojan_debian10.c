@@ -116,12 +116,8 @@ int install_xray() {
     fclose(config);
     system("apt install -y pwgen dnsutils qrencode");
     printf("正在运行xray安装脚本. . .\n");
-    system("wget https://cdn.jsdelivr.net/gh/XTLS/Xray-install/install-release.sh -O install-release.sh");
-    system("chmod +x install-release.sh");
-    system("bash install-release.sh");
+    system("curl -sSL https://raw.githubusercontent.com/XTLS/Xray-install/master/install-release.sh | sh");
     system("sleep 3");
-    system("rm -rf install-release.sh");
-    system("rm -rf TCPO.sh");
     printf("正在复制SSL证书与私钥. . .\n");
     system("cp -rf /root/1.pem /usr/local/etc/xray/certificate.crt");
     system("cp -rf /root/2.pem /usr/local/etc/xray/private.key");
@@ -170,6 +166,6 @@ int KernelUpdate() {
     config = fopen("/usr/local/etc/sni.conf", "w");
     fprintf(config, "%s", sni);
     fclose(config);
-    system("curl -sSL https://cdn.jsdelivr.net/gh/HXHGTS/TCPOptimization/TCPO_debian.sh | sh");
+    system("curl -sSL https://cdn.jsdelivr.net/gh/HXHGTS/TCPOptimization/TCPO_debian10.sh | sh");
     return 0;
 }
