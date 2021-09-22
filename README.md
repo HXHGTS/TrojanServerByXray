@@ -8,6 +8,10 @@ KVM/XEN机器执行(CentOS7):
 
 `yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
 
+OVZ机器执行(CentOS7):
+
+`yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_no_kernel_update.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
+
 KVM/XEN机器执行(Debian10):
 
 `apt update && apt install -y build-essential wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_debian10.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
