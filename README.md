@@ -37,4 +37,4 @@ KVM/XEN机器执行(Debian9/10):
 
 4.脚本执行需要root权限登录系统，AWS等特殊机型打开root权限方法[看这里](https://hxhgts.github.io/AWSECSRoot/)
 
-5.请在服务器后台防火墙放行tcp2053(https)端口
+5.请在服务器后台防火墙放行tcp2053(knetd)端口
