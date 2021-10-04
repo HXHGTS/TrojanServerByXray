@@ -19,6 +19,7 @@ Menu:UI();
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
         printf("---------------以下输出为绿色则xray运行正常-----------------\n");
         system("systemctl status xray -l");
+        system("ss -lp | grep xray");
         printf("\n--------------------------------------------------------\n");
         goto Menu;
     }
@@ -37,6 +38,7 @@ Menu:UI();
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
         printf("---------------以下输出为绿色则xray运行正常-----------------\n");
         system("systemctl status xray -l");
+        system("ss -lp | grep xray");
         printf("\n--------------------------------------------------------\n");
         goto Menu;
     }
@@ -60,6 +62,7 @@ Menu:UI();
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
         printf("---------------以下输出为绿色则xray运行正常-----------------\n");
         system("systemctl status xray -l");
+        system("ss -lp | grep xray");
         printf("\n--------------------------------------------------------\n");
         printf("xray部署完成！\n");
         printf("xray二维码:\n\n");
@@ -78,6 +81,7 @@ Menu:UI();
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
         printf("---------------以下输出为绿色则xray运行正常-----------------\n");
         system("systemctl status xray -l");
+        system("ss -lp | grep xray");
         printf("\n--------------------------------------------------------\n");
         goto Menu;
     }
@@ -138,12 +142,13 @@ int install_xray() {
     fclose(config);
     system("curl https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/config.json.2 >> /usr/local/etc/xray/config.json");
     printf("正在启动xray并将xray写入开机引导项. . .\n");
-    system("systemctl enable xray");
-    system("systemctl start xray");
+    system("systemctl stop xray");
+    system("systemctl enable xray && systemctl start xray");
     QRCodeGen();
     printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
     printf("---------------以下输出为绿色则xray运行正常-----------------\n");
     system("systemctl status xray -l");
+    system("ss -lp | grep xray");
     printf("\n--------------------------------------------------------\n");
     printf("xray部署完成！\n");
     printf("xray二维码:\n\n");
