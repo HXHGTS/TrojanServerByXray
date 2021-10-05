@@ -72,7 +72,9 @@ Menu:UI();
     else if (mode == 6) {
         printf("正在更新xray主程序. . .\n");
         system("systemctl stop xray");
-        system("curl -sSL https://cdn.jsdelivr.net/gh/XTLS/Xray-install/install-release.sh | sh");
+        system("wget https://raw.githubusercontent.com/XTLS/Xray-install/master/install-release.sh -O install-release.sh");
+        system("bash install-release.sh");
+        system("rm -f install-release.sh");
         system("systemctl start xray");
         printf("xray主程序更新完成！\n");
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
@@ -116,7 +118,9 @@ int install_xray() {
     fclose(config);
     system("apt install -y pwgen dnsutils qrencode");
     printf("正在运行xray安装脚本. . .\n");
-    system("curl -sSL https://raw.githubusercontent.com/XTLS/Xray-install/master/install-release.sh | sh");
+    system("wget https://raw.githubusercontent.com/XTLS/Xray-install/master/install-release.sh -O install-release.sh");
+    system("bash install-release.sh");
+    system("rm -f install-release.sh");
     system("sleep 3");
     printf("正在复制SSL证书与私钥. . .\n");
     system("cp -rf /root/1.pem /usr/local/etc/xray/certificate.crt");
