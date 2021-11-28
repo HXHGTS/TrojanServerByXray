@@ -18,7 +18,7 @@ Menu:UI();
         system("systemctl start xray");
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
         printf("---------------以下输出有显示则xray运行正常-----------------\n");
-        system("ss -lp | grep xray");
+        system("ss -lp | grep knetd");
         printf("\n--------------------------------------------------------\n");
         goto Menu;
     }
@@ -36,7 +36,7 @@ Menu:UI();
         system("systemctl restart xray");
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
         printf("---------------以下输出有显示则xray运行正常-----------------\n");
-        system("ss -lp | grep xray");
+        system("ss -lp | grep knetd");
         printf("\n--------------------------------------------------------\n");
         goto Menu;
     }
@@ -59,7 +59,7 @@ Menu:UI();
         QRCodeGen();
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
         printf("---------------以下输出有显示则xray运行正常-----------------\n");
-        system("ss -lp | grep xray");
+        system("ss -lp | grep knetd");
         printf("\n--------------------------------------------------------\n");
         printf("xray部署完成！\n");
         printf("xray二维码:\n\n");
@@ -79,7 +79,7 @@ Menu:UI();
         printf("xray主程序更新完成！\n");
         printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
         printf("---------------以下输出有显示则xray运行正常-----------------\n");
-        system("ss -lp | grep xray");
+        system("ss -lp | grep knetd");
         printf("\n--------------------------------------------------------\n");
         goto Menu;
     }
@@ -142,7 +142,7 @@ int install_xray() {
     QRCodeGen();
     printf("正在检测xray运行状态，以下输出不为空则运行正常！\n");
     printf("---------------以下输出有显示则xray运行正常-----------------\n");
-    system("ss -lp | grep xray");
+    system("ss -lp | grep knetd");
     printf("\n--------------------------------------------------------\n");
     printf("xray部署完成！\n");
     printf("xray二维码:\n\n");
