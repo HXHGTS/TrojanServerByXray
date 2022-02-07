@@ -5,33 +5,39 @@
 利用Xray搭建trojan服务器
 
 KVM/XEN机器执行(CentOS7):
-
-`yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
+```
+yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray
+```
 
 OVZ机器执行(CentOS7):
-
-`yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_no_kernel_update.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
+```
+yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_no_kernel_update.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray
+```
 
 KVM/XEN/LXC/OVZ机器执行(CentOS8):
-
-`yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_centos8.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
+```
+yum install -y gcc wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_centos8.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray
+```
 
 KVM/XEN机器执行(Debian10):
-
-`apt update && apt install -y build-essential wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_debian10.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
+```
+apt update && apt install -y build-essential wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_debian10.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray
+```
 
 KVM/XEN机器执行(Debian11):
-
-`apt update && apt install -y build-essential wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_debian11.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
+```
+apt update && apt install -y build-essential wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_debian11.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray
+```
 
 OVZ/LXC机器执行(Linux):
-
-`apt update && apt install -y build-essential wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_no_kernel_update.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
-
+```
+apt update && apt install -y build-essential wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_no_kernel_update.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray
+```
 
 第一次点击安装后会自动升级系统内核并触发重启，重启后输入
-
-`./xray`
+```
+./xray
+```
 
 脚本生成的二维码可以用trojan客户端扫描导入，trojan链接可以直接导入trojan客户端或在[这里](https://acl4ssr-sub.github.io/)生成Clash链接以导入Clash
 
