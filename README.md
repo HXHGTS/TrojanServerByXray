@@ -24,7 +24,7 @@ KVM/XEN机器执行(Debian11):
 
 `apt update && apt install -y build-essential wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_debian11.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
 
-OVZ机器执行(Linux):
+OVZ/LXC机器执行(Linux):
 
 `apt update && apt install -y build-essential wget && wget https://raw.githubusercontent.com/HXHGTS/TrojanServerByXray/main/trojan_no_kernel_update.c -O trojan.c && chmod +x trojan.c && gcc -o xray trojan.c && ./xray`
 
