@@ -165,6 +165,7 @@ int QRCodeGen() {
 }
 
 int KernelUpdate() {
+    if ((fopen("KernelUpdate.sh", "r")) == NULL) {
         if (fopen("/root/1.pem", "r") == NULL || fopen("/root/2.pem", "r") == NULL) {
         printf("检测到证书与私钥文件未按照规定方式放置于根目录，强制退出！\n");
         exit(0);
@@ -174,6 +175,14 @@ int KernelUpdate() {
         config = fopen("/usr/local/etc/sni.conf", "w");
         fprintf(config, "%s", sni);
         fclose(config);
-        system("curl -sSL https://cdn.jsdelivr.net/gh/HXHGTS/TCPOptimization/TCPO.sh | sh");
+        printf("正在升级新内核. . .\n");
+        system("wget https://cdn.jsdelivr.net/gh/HXHGTS/TCPOptimization/KernelUpdate8.sh -O KernelUpdate.sh");
+        system("chmod +x KernelUpdate.sh");
+        printf("正在升级，将自动触发重启以应用配置. . .\n");
+        system("bash KernelUpdate.sh");
+    }
+    else {
+        system("curl -sSL https://cdn.jsdelivr.net/gh/HXHGTS/TCPOptimization/TCPO_centos8.sh | sh");
+    }
     return 0;
 }
