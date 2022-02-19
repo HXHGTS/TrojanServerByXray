@@ -167,7 +167,7 @@ int install_xray() {
 
 int QRCodeGen() {
     config = fopen("/usr/local/etc/xray/trojan.txt", "w");
-    fprintf(config, "trojan://%s@%s:2053#%s\n",passwd,sni,sni);
+    fprintf(config, "trojan://%s@%s:443#%s\n",passwd,sni,sni);
     fclose(config);
     return 0;
 }
