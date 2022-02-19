@@ -3,6 +3,11 @@
                 "fallbacks": [
                     {
                         "dest": 80
+                    },
+                    {
+                        "path": "/GameDownload",
+                        "dest": 1080,
+                        "xver": 1
                     }
                 ]
             },
@@ -21,11 +26,11 @@
                     ]
                 }
             }
-        }
-    ],
-    "outbounds": [
+        },
         {
-            "protocol": "freedom"
-        }
-    ]
-}
+            "port": 1080,
+            "listen": "127.0.0.1",
+            "protocol": "trojan",
+            "settings": {
+                "clients": [
+                    {
