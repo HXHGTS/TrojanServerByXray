@@ -32,7 +32,7 @@ fetch(request)
 
 一个典型Clash配置:
 ```
-  - {name: xxxxxxxxxx, server: 1.0.0.1, port: 443, type: trojan, password: xxxxxxxxxxxxxxxxxxx, sni: xxxxxxx.com, network: ws, udp: true, ws-opts: {path: /GameDownload, headers:{Host: xxx.xxxxxx.workers.dev}}}
+  - {name: xxxxxxxxxx, server: 1.0.0.1, port: 443, type: trojan, password: xxxxxxxxxxxxxxxxxxx, sni: xxx.xxxxxx.workers.dev, network: ws, udp: true, ws-opts: {path: /GameDownload, headers:{Host: xxx.xxxxxx.workers.dev}}}
 ```
 另一种写法:
 ```
