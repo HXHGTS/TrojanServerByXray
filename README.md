@@ -2,7 +2,7 @@
 
 ## 警告⚠：此技术仅限用于个人搭建游戏加速器使用！！！若用于其他违法目的，后果自负！！！
 
-利用Xray搭建trojan服务器，支持Clash/Xray最新标准，可过CDN
+利用Xray搭建trojan服务器，支持Clash/Xray最新标准，可选择过CDN
 
 KVM/XEN机器执行(CentOS7):
 ```
